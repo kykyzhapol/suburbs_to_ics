@@ -17,6 +17,12 @@ back_station_dict = {1: 'Обское море',
                      3: 'Новосибирск-южный',
                      4: 'Речной вокзал',
                      5: 'Камышенская'}
+back_station_dict_en = {1: 'Ob sea',
+                     2: 'Seyatel',
+                     3: 'Novosibirsk-southern',
+                     4: 'River station',
+                     5: 'Kamychenskaya'}
+
 
 dep_time = []
 arr_time = []
@@ -69,11 +75,11 @@ def main():
         choose_train = input('Выбирете время отправления -->')
     print(choose_train)
 
-    create_event(f'{datetime.date.today().isoformat()}', choose_train, f'{trip[choose_train][0]}', f'{back_station_dict.get(arr_input)}')
+    create_event(f'{datetime.date.today().isoformat()}', choose_train, f'{trip[choose_train][0]}', f'{back_station_dict_en.get(arr_input)}')
 
 def create_event(date, dep, arr, st_arr):
     name = Event()
-    name.name = f'Электричка на {st_arr}'
+    name.name = f'Sub train to {st_arr}'
     corrected_dep = datetime.datetime.strptime(f'{date} {dep}:00', '%Y-%m-%d %H:%M:%S') - datetime.timedelta(hours=7)
     corrected_arr = datetime.datetime.strptime(f'{date} {arr}:00', '%Y-%m-%d %H:%M:%S') - datetime.timedelta(hours=7)
     begin = corrected_dep.strftime('%Y-%m-%d %H:%M:%S')
